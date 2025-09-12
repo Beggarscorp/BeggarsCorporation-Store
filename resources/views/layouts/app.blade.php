@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ $title ?? 'E-Commerce' }}</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @livewireStyles
+</head>
+<body class="bg-gray-100">
+
+    {{-- Header --}}
+    @include('components.header')
+
+    {{-- Page Content --}}
+    <main class="container mx-auto p-6">
+        {{ $slot }}
+    </main>
+
+    {{-- Footer --}}
+    @include('components.footer')
+
+    @livewireScripts
+</body>
+</html>
