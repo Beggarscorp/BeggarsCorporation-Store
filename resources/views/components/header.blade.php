@@ -24,8 +24,8 @@
         x-transition:leave-end="opacity-0 scale-90"
         >
             <div class="flex-block sm:flex md:flex justify-center space-x-6 font-bold">
-                <div><a href="#" class="hover:underline">Link 1</a></div>
-                <div><a href="#" class="hover:underline">Link 2</a></div>
+                <div><a wire:navigate href="/" class="hover:underline">Home</a></div>
+                <div><a wire:navigate href="{{ route('shop') }}" class="hover:underline">Shop</a></div>
                 <div><a href="#" class="hover:underline">Link 3</a></div>
                 <div><a href="#" class="hover:underline">Link 3</a></div>
                 <div><a href="#" class="hover:underline">Link 3</a></div>
@@ -40,8 +40,8 @@
         <div class="links border-t-2 py-2 bg-yellow-500 px-2 hidden sm:block md:block"
         >
             <div class="flex justify-around font-bold">
-                <div><a href="#" class="hover:underline">Link 1</a></div>
-                <div><a href="#" class="hover:underline">Link 2</a></div>
+                <div><a wire:navigate href="/" class="hover:underline">Home</a></div>
+                <div><a wire:navigate href="{{ route('shop') }}" class="hover:underline">Shop</a></div>
                 <div><a href="#" class="hover:underline">Link 3</a></div>
                 <div><a href="#" class="hover:underline">Link 3</a></div>
                 <div><a href="#" class="hover:underline">Link 3</a></div>

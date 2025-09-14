@@ -21,6 +21,7 @@
     {{-- Footer --}}
     @include('components.footer')
 
-    @livewireScripts
+    @livewireScripts(['alpine' => false, 'navigate' => true])
+
 </body>
 </html>

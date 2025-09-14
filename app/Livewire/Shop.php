@@ -6,12 +6,12 @@ use Livewire\Component;
 use Livewire\Attributes\Layout;
 
 #[Layout('layouts.app')]
-class Index extends Component
+class Shop extends Component
 {
     public function render()
     {
-        return view('livewire.index',[
-            'title' => 'Home',
+        return view('livewire.shop', [
+            'title' => 'Shop',
         ]);
     }
 }
