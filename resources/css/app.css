@@ -5,3 +5,18 @@
 @source "../../storage/framework/views/*.php";
 @source "../**/*.blade.php";
 @source "../**/*.{js,ts,vue}";
+
+@theme {
+  --font-nunito: "Nunito", sans-serif;
+}
+
+@layer custom-classes {
+    .bg-admin
+    {
+        background-color: #060818; /* Tailwind's blue-700 */
+    }
+    .bg-admin-light
+    {
+        background-color: #0e1726;
+    }
+}
