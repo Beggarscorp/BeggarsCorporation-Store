@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @livewireStyles
 </head>
-<body class="flex font-nunito bg-gray-100">
+<body class="flex font-nunito bg-gray-100 h-screen overflow-hidden">
 
     {{-- Sidebar --}}
     @include('components.sidebar')
 
     {{-- Admin Content --}}
-    <main class="flex-1 p-6">
+    <main class="flex-1 p-6 overflow-y-scroll">
         {{ $slot }}
     </main>
 

@@ -8,6 +8,8 @@ use App\Livewire\Admin\AllProducts;
 use App\Livewire\Admin\Categories;
 use App\Livewire\Admin\AddCategories;
 use App\Livewire\Admin\Admin;
+use App\Livewire\Admin\UpdateCategory;
+use App\Livewire\Admin\AddColors;
 
 Route::get('/', Index::class)->name('home');
 Route::get('/shop', Shop::class)->name('shop');
@@ -19,4 +21,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/all-products', AllProducts::class)->name('admin.allproducts');
     Route::get('/categories', Categories::class)->name('admin.categories');
     Route::get('/add-categories', AddCategories::class)->name('admin.addcategories');
+    Route::get('/update-category/{id}', UpdateCategory::class)->name('admin.update-category');
+    Route::get('/add-color', AddColors::class)->name('admin.addcolors');
 });

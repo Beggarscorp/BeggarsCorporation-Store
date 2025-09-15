@@ -64,7 +64,7 @@
             <select wire:model="category_id" class="my-input">
                 <option value="">Select Category</option>
                 @foreach($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                <option value="{{ $category->id }}">{{ $category->categoryName }}</option>
                 @endforeach
             </select>
             @error('category_id') <span class="error text-red-400">{{ $message }}</span> @enderror
@@ -107,7 +107,7 @@
 
         <!-- Submit Button -->
         <div class="grid mb-5">
-            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
+            <button type="submit" class="submitButton">
                 Save Product
             </button>
         </div>

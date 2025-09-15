@@ -19,7 +19,7 @@ class AddProduct extends Component
     public $price;
     public $size_and_fit;
     public $material_and_care;
-    public $spacification;
+    public $specification;
     public $product_color_id;
     public $category_id;
     public $impact_product_by;
@@ -45,8 +45,8 @@ class AddProduct extends Component
         'price' => 'required|numeric|min:0',
         'size_and_fit' => 'nullable|string',
         'material_and_care' => 'nullable|string',
-        'spacification' => 'nullable|string',
-        'product_color_id' => 'required|exists:product_colors,id',
+        'specification' => 'nullable|string',
+        'product_color_id' => 'nullable|exists:product_colors,id',
         'category_id' => 'required|exists:categories,id',
         'impact_product_by' => 'nullable|string|max:255',
         'stock' => 'required|integer|min:0',
@@ -77,7 +77,7 @@ class AddProduct extends Component
             'price' => $this->price,
             'size_and_fit' => $this->size_and_fit,
             'material_and_care' => $this->material_and_care,
-            'spacification' => $this->spacification,
+            'spacification' => $this->specification,
             'product_color_id' => $this->product_color_id,
             'category_id' => $this->category_id,
             'impact_product_by' => $this->impact_product_by,

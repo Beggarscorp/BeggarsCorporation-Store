@@ -13,7 +13,7 @@ class Products extends Model
         'price',
         'size_and_fit',
         'material_and_care',
-        'spacification',
+        'specification',
         'product_color_id',
         'category_id',
         'impact_product_by',
