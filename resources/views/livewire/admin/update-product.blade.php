@@ -1,6 +1,6 @@
 <div>
-    <div class="text-2xl font-bold my-5">Add Product</div>
-    
+    <div class="text-2xl font-bold my-5">Update Product</div>
+
     @if (session()->has('error'))
     <div class="bg-red-100 text-red-700 px-4 py-2 rounded mb-3">
         {{ session('error') }}
@@ -13,7 +13,7 @@
     </div>
     @endif
 
-    <form wire:submit.prevent="addProduct">
+    <form wire:submit.prevent="updateProduct">
 
         <!-- Product Name -->
         <div class="grid mb-5">
@@ -107,20 +107,26 @@
         <div class="grid mb-5">
             <label for="productImage" class="my-2">Product Image :</label>
             <input type="file" wire:model="productImage" class="my-input">
+            @if ($productImage)
+            <img src="{{ Storage::url($productImage) }}" alt="product-image" class="h-32 rounded shadow mt-4">
+            @else
+            <img src="{{ $productImage->temporaryUrl() }}" alt="product-image">
+            @endif
             @error('productImage') <span class="error text-red-400">{{ $message }}</span> @enderror
         </div>
 
         <!-- Product Gallery Images -->
         <div class="grid mb-5">
-            <label for="productGalleryImages" class="my-2">Product Gallery Images :</label>
-            <input type="file" wire:model="productGalleryImages" multiple class="my-input">
-            @error('productGalleryImages') <span class="error text-red-400">{{ $message }}</span> @enderror
+            <label for="newGalleryImages" class="my-2">Product Gallery Images :</label>
+            <input type="file" wire:model="newGalleryImages" multiple class="my-input">
+            
+            @error('newGalleryImages') <span class="error text-red-400">{{ $message }}</span> @enderror
         </div>
 
         <!-- Submit Button -->
         <div class="grid mb-5">
             <button type="submit" class="submitButton">
-                Save Product
+                Update Product
             </button>
         </div>
 

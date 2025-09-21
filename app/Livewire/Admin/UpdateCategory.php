@@ -69,6 +69,10 @@ class UpdateCategory extends Component
             ]);
 
             session()->flash('message', 'Category updated successfully ✅');
+            return redirect()
+            ->route('admin.categories')
+            ->with('message','Category updated successfully ✅');
+            
         } catch (\Throwable $e) {
             session()->flash('error', 'Error: ' . $e->getMessage());
         }
@@ -77,7 +81,7 @@ class UpdateCategory extends Component
     #[Layout('layouts.admin')]
     public function render()
     {
-        return view('livewire.admin.categories', [
+        return view('livewire.admin.update-category', [
             'title' => 'Update Category',
         ]);
     }

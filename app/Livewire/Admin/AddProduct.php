@@ -69,6 +69,7 @@ class AddProduct extends Component
                 $galleryPaths[] = $image->store('products/gallery', 'public');
             }
         }
+        $this->product_color_id=1;
 
         // Save to database
         Products::create([
@@ -77,7 +78,7 @@ class AddProduct extends Component
             'price' => $this->price,
             'size_and_fit' => $this->size_and_fit,
             'material_and_care' => $this->material_and_care,
-            'spacification' => $this->specification,
+            'specification' => $this->specification,
             'product_color_id' => $this->product_color_id,
             'category_id' => $this->category_id,
             'impact_product_by' => $this->impact_product_by,
@@ -90,7 +91,7 @@ class AddProduct extends Component
         session()->flash('message', 'Product added successfully!');
         $this->reset([
             'product_name', 'description', 'price', 'size_and_fit',
-            'material_and_care', 'spacification', 'product_color_id',
+            'material_and_care', 'specification', 'product_color_id',
             'category_id', 'impact_product_by', 'stock', 'min_order_quantity',
             'productImage', 'productGalleryImages'
         ]);
