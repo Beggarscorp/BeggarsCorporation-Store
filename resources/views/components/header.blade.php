@@ -1,109 +1,114 @@
-<header class="sticky top-0 z-50">
-    <div class="bg-yellow-500 text-white" x-data="{ open: false , cartOpen: false }" x-effect="document.body.classList.toggle('overflow-hidden', cartOpen)">
-        <div class="grid grid-cols-12 items-center py-3">
-            <div class="col-span-6 md:col-span-4 forLogo px-10"><img src="{{asset('assets/images/logos/header-logo.png')}}" alt="logo" class="max-w-[120px] md:max-w-[220px] lg:max-w-[250px] h-auto"></div>
-            <div class="col-span-6 md:col-span-8 forIcon px-10 flex justify-end items-center">
-                <div class="icons">
-                    <i class="fas fa-user"></i>
-                    <i class="fas fa-cart-arrow-down"  @click="cartOpen = !cartOpen"></i>
-                    <div class="block sm:hidden md:hidden">
-                        <i class="fas fa-bars" @click="open = !open"></i>
+<header class="sticky top-0 z-50" 
+        x-data="{ open: false, cartOpen: false }" 
+        x-effect="document.body.classList.toggle('overflow-hidden', cartOpen)">
+
+    <!-- Top bar -->
+    <div class="flex items-center justify-between py-3 px-4 bg-yellow-500 text-white">
+        <!-- Logo -->
+        <div class="flex-shrink-0">
+            <img src="{{asset('assets/images/logos/header-logo.png')}}" 
+                 alt="logo" 
+                 class="max-w-[140px] md:max-w-[200px] lg:max-w-[240px] h-auto">
+        </div>
+
+        <!-- Right side icons -->
+        <div class="flex items-center space-x-4">
+            <i class="fas fa-user cursor-pointer"></i>
+            <button @click="cartOpen = true">
+                <i class="fas fa-cart-arrow-down cursor-pointer"></i>
+            </button>
+            <!-- mobile menu toggle -->
+            <button class="block lg:hidden" @click="open = !open">
+                <i class="fas fa-bars cursor-pointer"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <nav class="bg-yellow-500 px-4 py-3 lg:hidden"
+         x-show="open"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 -translate-y-2"
+         x-transition:enter-end="opacity-100 translate-y-0"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100 translate-y-0"
+         x-transition:leave-end="opacity-0 -translate-y-2">
+        <div class="flex flex-col space-y-3 font-bold">
+            <a wire:navigate href="/" class="hover:underline">Home</a>
+            <a wire:navigate href="{{ route('shop') }}" class="hover:underline">Impact Product</a>
+            <a href="#" class="hover:underline">Bags</a>
+            <a href="#" class="hover:underline">Stoles & Sarees</a>
+            <a href="#" class="hover:underline">Home Decor</a>
+            <a href="#" class="hover:underline">Poonya</a>
+            <a href="#" class="hover:underline">Book</a>
+        </div>
+    </nav>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden lg:block bg-yellow-500 border-t border-yellow-400 py-3">
+        <div class="flex justify-center space-x-10 font-bold text-white">
+            <a wire:navigate href="/" class="hover:underline">Home</a>
+            <a wire:navigate href="{{ route('shop') }}" class="hover:underline">Impact Product</a>
+            <a href="#" class="hover:underline">Bags</a>
+            <a href="#" class="hover:underline">Stoles & Sarees</a>
+            <a href="#" class="hover:underline">Home Decor</a>
+            <a href="#" class="hover:underline">Poonya</a>
+            <a href="#" class="hover:underline">Book</a>
+        </div>
+    </nav>
+
+    <!-- Cart Sidebar -->
+    <div class="fixed inset-0 z-50 flex justify-end"
+         x-show="cartOpen"
+         x-transition.opacity>
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black bg-opacity-50" @click="cartOpen = false"></div>
+
+        <!-- Sidebar -->
+        <div class="relative w-80 h-full bg-white shadow-xl transform transition-transform duration-300"
+             x-transition:enter="translate-x-full"
+             x-transition:enter-end="translate-x-0"
+             x-transition:leave="translate-x-0"
+             x-transition:leave-end="translate-x-full">
+
+            <!-- Header -->
+            <div class="p-4 border-b flex justify-between items-center">
+                <h2 class="text-2xl font-bold text-gray-800">Cart</h2>
+                <button @click="cartOpen = false" class="text-gray-500 hover:text-gray-800">✕</button>
+            </div>
+
+            <!-- Cart Items -->
+            <div class="p-4 space-y-4 overflow-y-auto h-[calc(100%-60px)]">
+                <div class="grid grid-cols-12 gap-2 border-b pb-2">
+                    <div class="col-span-4">
+                        <img src="{{asset('assets/images/product-image.jpg')}}" alt="product" class="rounded">
+                    </div>
+                    <div class="col-span-8">
+                        <div class="font-bold">Product Name</div>
+                        <div class="text-sm text-gray-400">Short Description</div>
+                        <div class="text-lg font-bold text-yellow-500">$99.00</div>
+                        <div class="flex space-x-2 text-sm">
+                            <span>Qty: 1</span>
+                            <span>Total: $99.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-12 gap-2 border-b pb-2">
+                    <div class="col-span-4">
+                        <img src="{{asset('assets/images/product-image.jpg')}}" alt="product" class="rounded">
+                    </div>
+                    <div class="col-span-8">
+                        <div class="font-bold">Product Name</div>
+                        <div class="text-sm text-gray-400">Short Description</div>
+                        <div class="text-lg font-bold text-yellow-500">$99.00</div>
+                        <div class="flex space-x-2 text-sm">
+                            <span>Qty: 1</span>
+                            <span>Total: $99.00</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- for mobile device -->
-        <div class="links border-t-2 py-2 bg-yellow-500 px-2 w-50 absolute sm:static md:static" 
-        x-show="open"
-        x-transition:enter="transition ease-out duration-300"
-        x-transition:enter-start="opacity-0 scale-90"
-        x-transition:enter-end="opacity-100 scale-100"
-        x-transition:leave="transition ease-in duration-200"
-        x-transition:leave-start="opacity-100 scale-100"
-        x-transition:leave-end="opacity-0 scale-90"
-        >
-            <div class="flex-block sm:flex md:flex justify-center space-x-6 font-bold">
-                <div><a wire:navigate href="/" class="hover:underline">Home</a></div>
-                <div><a wire:navigate href="{{ route('shop') }}" class="hover:underline">Shop</a></div>
-                <div><a href="#" class="hover:underline">Link 3</a></div>
-                <div><a href="#" class="hover:underline">Link 3</a></div>
-                <div><a href="#" class="hover:underline">Link 3</a></div>
-                <div><a href="#" class="hover:underline">Link 3</a></div>
-            </div>
-        </div>
-
-        <!-- end here -->
-
-        <!-- for desktop device -->
-
-        <div class="links border-t-2 py-2 bg-yellow-500 px-2 hidden sm:block md:block"
-        >
-            <div class="flex justify-around font-bold">
-                <div><a wire:navigate href="/" class="hover:underline">Home</a></div>
-                <div><a wire:navigate href="{{ route('shop') }}" class="hover:underline">Shop</a></div>
-                <div><a href="#" class="hover:underline">Link 3</a></div>
-                <div><a href="#" class="hover:underline">Link 3</a></div>
-                <div><a href="#" class="hover:underline">Link 3</a></div>
-                <div><a href="#" class="hover:underline">Link 3</a></div>
-            </div>
-        </div>
-
-        <!-- end here -->
-
-        <!-- cart sidebar code  -->
-
-        <div>
-            <div class="grid grid-cols-12 h-[calc(100vh-114px)]" x-show="cartOpen" 
-            x-show="cartOpen"
-            x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0 scale-90"
-            x-transition:enter-end="opacity-100 scale-100"
-            x-transition:leave="transition ease-in duration-200"
-            x-transition:leave-start="opacity-100 scale-100"
-            x-transition:leave-end="opacity-0 scale-90"
-            >
-                <div class="col-span-8 bg-[#ffffff] h-full">sdf</div>
-                <div class="col-span-4 bg-white text-gray-400 h-full p-4 border-b-2 shadow-lg">
-                    <div class="text-2xl font-bold">Cart</div>
-                    
-                    <div class="cart-card">
-                        <div class="grid grid-cols-12 border-b-2 border-yellow-500 py-2">
-                            <div class="col-span-4 p-2">
-                                <img src="{{asset('assets/images/product-image.jpg')}}" alt="product" class="h-auto max-w-full rounded">
-                            </div>
-                            <div class="col-span-8 pl-2">
-                                <div class="font-bold">Product Name</div>
-                                <div class="text-sm text-gray-400">Product Short Description</div>
-                                <div class="text-lg font-bold text-yellow-500">$99.00</div>
-                                <div class="flex space-x-2">
-                                    <div class="text-sm">Quantity: 1</div>
-                                    <div class="text-sm">Total: $99.00</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cart-card">
-                        <div class="grid grid-cols-12 border-b-2 border-yellow-500 py-2">
-                            <div class="col-span-4 p-2">
-                                <img src="{{asset('assets/images/product-image.jpg')}}" alt="product" class="h-auto max-w-full rounded">
-                            </div>
-                            <div class="col-span-8 pl-2">
-                                <div class="font-bold">Product Name</div>
-                                <div class="text-sm text-gray-400">Product Short Description</div>
-                                <div class="text-lg font-bold text-yellow-500">$99.00</div>
-                                <div class="flex space-x-2">
-                                    <div class="text-sm">Quantity: 1</div>
-                                    <div class="text-sm">Total: $99.00</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
     </div>
 </header>

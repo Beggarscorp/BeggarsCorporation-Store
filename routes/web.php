@@ -12,8 +12,22 @@ use App\Livewire\Admin\Admin;
 use App\Livewire\Admin\UpdateCategory;
 use App\Livewire\Admin\AddColors;
 
+use App\Livewire\Pages\AboutUs;
+use App\Livewire\Pages\PrivacyPolicy;
+use App\Livewire\Pages\TermsAndConditions;
+use App\Livewire\Pages\ShippingAndDeliveryPolicy;
+use App\Livewire\Pages\CancellationAndRefundPolicy;
+
+use App\Livewire\Product;
+
 Route::get('/', Index::class)->name('home');
 Route::get('/shop', Shop::class)->name('shop');
+Route::get('/product/{name}/{id}', Product::class)->name('product.details');
+Route::get('/about-us', AboutUs::class)->name('about-us');
+Route::get('/privacy-policy', PrivacyPolicy::class)->name('privacy-policy');
+Route::get('/terms-and-conditions', TermsAndConditions::class)->name('terms-and-conditions');
+Route::get('/shipping-and-delivery-policy', ShippingAndDeliveryPolicy::class)->name('shipping-and-delivery-policy');
+Route::get('/cancellation-and-refund-policy', CancellationAndRefundPolicy::class)->name('cancellation-and-refund-policy');
 
 Route::get('/admin', Admin::class)->name('admin');
 Route::prefix('admin')->group(function () {
@@ -26,3 +40,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/update-category/{id}', UpdateCategory::class)->name('admin.update-category');
     Route::get('/add-color', AddColors::class)->name('admin.addcolors');
 });
+
+
+// Static pages routes

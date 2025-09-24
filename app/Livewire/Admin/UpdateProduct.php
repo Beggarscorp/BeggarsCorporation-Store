@@ -28,8 +28,7 @@ class UpdateProduct extends Component
     public $min_order_quantity;
     public $productImage;
 
-    // 🔹 Old gallery + new uploads
-    public $productGalleryImages = [];
+    // 🔹 Only new gallery uploads (replace old ones)
     public $newGalleryImages = [];
 
     public $colors;
@@ -53,11 +52,6 @@ class UpdateProduct extends Component
         $this->stock              = $id->stock;
         $this->min_order_quantity = $id->min_order_quantity;
         $this->productImage       = $id->productImage;
-
-        // decode JSON string from DB into array
-        $this->productGalleryImages = $id->productGalleryImages
-            ? json_decode($id->productGalleryImages, true)
-            : [];
     }
 
     protected function rules()
@@ -75,12 +69,12 @@ class UpdateProduct extends Component
             'stock'               => 'required|integer|min:0',
             'min_order_quantity'  => 'required|integer|min:1',
 
-            // ✅ Handle product image
+            // Handle main product image
             'productImage' => $this->productImage instanceof TemporaryUploadedFile
                 ? 'nullable|image|max:1024'
                 : 'nullable|string',
 
-            // ✅ Validate multiple uploads
+            // Validate multiple uploads for gallery
             'newGalleryImages.*' => 'nullable|image|max:1024',
         ];
     }
@@ -97,19 +91,19 @@ class UpdateProduct extends Component
                 $validated['productImage'] = $this->productImage; // keep old one
             }
 
-            // 🔹 Always ensure array
-            $galleryPaths = is_array($this->productGalleryImages) ? $this->productGalleryImages : [];
-
-            // 🔹 Handle new gallery uploads
+            // 🔹 Handle gallery images: replace old ones if new uploaded
             if (!empty($this->newGalleryImages)) {
+                $galleryPaths = [];
                 foreach ($this->newGalleryImages as $img) {
                     if ($img instanceof TemporaryUploadedFile) {
                         $galleryPaths[] = $img->store('products/gallery', 'public');
                     }
                 }
+                $validated['productGalleryImages'] = json_encode($galleryPaths);
+            } else {
+                // Keep old gallery if no new images uploaded
+                $validated['productGalleryImages'] = $this->product->productGalleryImages;
             }
-
-            $validated['productGalleryImages'] = json_encode($galleryPaths);
 
             // 🔹 Update product
             $this->product->update($validated);

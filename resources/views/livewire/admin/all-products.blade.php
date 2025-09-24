@@ -43,11 +43,11 @@
                         <img src="{{ Storage::url($product->productImage) }}" class="w-12 h-12 rounded object-cover" />
                     </td>
                     <td class="px-4 py-3">{{ $product->product_name }}</td>
-                    <td class="px-4 py-3">{{ $product->description }}</td>
+                    <td class="px-4 py-3">{{ \Illuminate\Support\Str::words($product->description, words: 8) }}</td>
                     <td class="px-4 py-3">{{ $product->price }}</td>
-                    <td class="px-4 py-3">{{ $product->size_and_fit }}</td>
-                    <td class="px-4 py-3">{{ $product->material_and_care }}</td>
-                    <td class="px-4 py-3">{{ $product->specification }}</td>
+                    <td class="px-4 py-3">{{ \Illuminate\Support\Str::words($product->size_and_fit, words: 8) }}</td>
+                    <td class="px-4 py-3">{{ \Illuminate\Support\Str::words($product->material_and_care, words: 8) }}</td>
+                    <td class="px-4 py-3">{{ \Illuminate\Support\Str::words($product->specification, words: 8) }}</td>
                     <td class="px-4 py-3">{{ $product->product_color_id }}</td>
                     <td class="px-4 py-3">{{ $product->category_id }}</td>
                     <td class="px-4 py-3">{{ $product->impact_product_by }}</td>

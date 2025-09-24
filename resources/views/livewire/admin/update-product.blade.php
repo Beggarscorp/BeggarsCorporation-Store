@@ -39,7 +39,7 @@
         <!-- Size & Fit -->
         <div class="grid mb-5">
             <label for="size_and_fit" class="my-2">Size & Fit :</label>
-            <input type="text" wire:model="size_and_fit" class="my-input" placeholder="Write product size and fit here...">
+            <textarea wire:model="size_and_fit" class="my-input" placeholder="Write product size and fit here..."></textarea>
             @error('size_and_fit') <span class="error text-red-400">{{ $message }}</span> @enderror
         </div>
 
