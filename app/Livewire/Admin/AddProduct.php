@@ -8,6 +8,7 @@ use Livewire\WithFileUploads;
 use App\Models\Products;
 use App\Models\Category;
 use App\Models\ProductColor;
+use Illuminate\Support\Str; 
 
 class AddProduct extends Component
 {
@@ -15,6 +16,7 @@ class AddProduct extends Component
 
     // Product fields
     public $product_name;
+    public $slug;
     public $description;
     public $price;
     public $size_and_fit;
@@ -41,6 +43,7 @@ class AddProduct extends Component
     // Validation rules
     protected $rules = [
         'product_name' => 'required|string|max:255',
+        'slug' => 'required|string',
         'description' => 'nullable|string',
         'price' => 'required|numeric|min:0',
         'size_and_fit' => 'nullable|string',
@@ -54,6 +57,11 @@ class AddProduct extends Component
         'productImage' => 'nullable|image|max:1024', // 1MB max
         'productGalleryImages.*' => 'nullable|image|max:1024',
     ];
+
+    public function generateSlug($value)
+    {
+        $this->slug = Str::slug($value);
+    }
 
     public function addProduct()
     {
@@ -74,6 +82,7 @@ class AddProduct extends Component
         // Save to database
         Products::create([
             'product_name' => $this->product_name,
+            'slug' => $this->slug,
             'description' => $this->description,
             'price' => $this->price,
             'size_and_fit' => $this->size_and_fit,
@@ -90,7 +99,7 @@ class AddProduct extends Component
 
         session()->flash('message', 'Product added successfully!');
         $this->reset([
-            'product_name', 'description', 'price', 'size_and_fit',
+            'product_name', 'slug', 'description', 'price', 'size_and_fit',
             'material_and_care', 'specification', 'product_color_id',
             'category_id', 'impact_product_by', 'stock', 'min_order_quantity',
             'productImage', 'productGalleryImages'

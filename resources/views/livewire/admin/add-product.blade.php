@@ -18,8 +18,15 @@
         <!-- Product Name -->
         <div class="grid mb-5">
             <label for="product_name" class="my-2">Product Name :</label>
-            <input type="text" wire:model="product_name" class="my-input" placeholder="Enter product name">
+            <input type="text" wire:model="product_name" wire:input="generateSlug($event.target.value)" class="my-input" placeholder="Enter product name">
             @error('product_name') <span class="error text-red-400">{{ $message }}</span> @enderror
+        </div>
+
+        <!-- Slug -->
+        <div class="grid mb-5">
+            <label for="slug" class="my-2">Slug :</label>
+            <input type="text" wire:model="slug" class="my-input" placeholder="Slug will be generated automatically" readonly>
+            @error('slug') <span class="error text-red-400">{{ $message }}</span> @enderror
         </div>
 
         <!-- Description -->

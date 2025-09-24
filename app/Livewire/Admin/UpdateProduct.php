@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin;
 
+use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use App\Models\ProductColor;
@@ -16,6 +17,7 @@ class UpdateProduct extends Component
 
     public $product;
     public $product_name;
+    public $slug;
     public $description;
     public $price;
     public $size_and_fit;
@@ -39,8 +41,8 @@ class UpdateProduct extends Component
         $this->colors = ProductColor::all();
         $this->categories = Category::all();
         $this->product = $id;
-
         $this->product_name       = $id->product_name;
+        $this->slug               = $id->slug;
         $this->description        = $id->description;
         $this->price              = $id->price;
         $this->size_and_fit       = $id->size_and_fit;
@@ -58,6 +60,7 @@ class UpdateProduct extends Component
     {
         return [
             'product_name'        => 'required|string|max:255',
+            'slug'                => 'required|string',
             'description'         => 'nullable|string',
             'price'               => 'required|numeric|min:0',
             'size_and_fit'        => 'nullable|string',
@@ -77,6 +80,11 @@ class UpdateProduct extends Component
             // Validate multiple uploads for gallery
             'newGalleryImages.*' => 'nullable|image|max:1024',
         ];
+    }
+
+    public function generateSlug($value)
+    {
+        $this->slug = Str::slug($value);
     }
 
     public function updateProduct()

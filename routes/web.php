@@ -22,7 +22,7 @@ use App\Livewire\Product;
 
 Route::get('/', Index::class)->name('home');
 Route::get('/shop', Shop::class)->name('shop');
-Route::get('/product/{name}/{id}', Product::class)->name('product.details');
+Route::get('/product/{slug}/{id}', Product::class)->name('product.details');
 Route::get('/about-us', AboutUs::class)->name('about-us');
 Route::get('/privacy-policy', PrivacyPolicy::class)->name('privacy-policy');
 Route::get('/terms-and-conditions', TermsAndConditions::class)->name('terms-and-conditions');

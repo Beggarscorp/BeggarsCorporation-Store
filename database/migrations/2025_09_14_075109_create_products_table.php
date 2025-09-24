@@ -15,6 +15,7 @@ return new class extends Migration
         $table->id();
         $table->timestamps();
         $table->string('product_name');
+        $table->string('slug')->unique();
         $table->text('description')->nullable();
         $table->decimal('price', 8, 2);
         $table->text('size_and_fit')->nullable();

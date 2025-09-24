@@ -20,6 +20,7 @@
                     <th class="px-4 py-2">#</th>
                     <th class="px-4 py-2">Image</th>
                     <th class="px-4 py-2">Product Name</th>
+                    <th class="px-4 py-2">Slug</th>
                     <th class="px-4 py-2">Description</th>
                     <th class="px-4 py-2">Price</th>
                     <th class="px-4 py-2">Size & Fit</th>
@@ -43,6 +44,7 @@
                         <img src="{{ Storage::url($product->productImage) }}" class="w-12 h-12 rounded object-cover" />
                     </td>
                     <td class="px-4 py-3">{{ $product->product_name }}</td>
+                    <td class="px-4 py-3">{{ $product->slug }}</td>
                     <td class="px-4 py-3">{{ \Illuminate\Support\Str::words($product->description, words: 8) }}</td>
                     <td class="px-4 py-3">{{ $product->price }}</td>
                     <td class="px-4 py-3">{{ \Illuminate\Support\Str::words($product->size_and_fit, words: 8) }}</td>

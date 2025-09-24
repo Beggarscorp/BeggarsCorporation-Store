@@ -6,7 +6,7 @@
             <div class="rounded-md shadow-2xl p-3">
                 <div class="space-y-3">
                     <div>
-                        <a href="/product/{{ $product->product_name }}/{{ $product->id }}" target="_blank" rel="noopener noreferrer">
+                        <a href="{{ route('product.details', ['slug' => $product->slug, 'id' => $product->id]) }}" target="_blank" rel="noopener noreferrer">
                             <img src="{{ Storage::url($product->productImage) }}" alt="product-image" class="rounded-md hover:scale-102 transition duration-300">
                         </a>
                     </div>
