@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Products;
+use App\Models\Category;
 use Illuminate\Support\Facades\Session;
 
 // ────────── Add to Cart ──────────
@@ -21,6 +22,7 @@ if (!function_exists('addToCart')) {
                 'price' => $product->price,
                 'quantity' => $quantity,
                 'image' => $product->productImage,
+                'category_name' => Category::find($product->category_id)->categoryName ?? 'Unknown Category',
             ];
         }
 
@@ -65,6 +67,46 @@ if (!function_exists('cartTotal')) {
         }
 
         return $total;
+    }
+}
+
+// ────────── Increase Cart Quantity ──────────
+if (!function_exists('increaseCartQuantity')) {
+    function increaseCartQuantity($productId)
+    {
+        $cart = session()->get('cart', []);
+
+        if (isset($cart[$productId])) {
+            $cart[$productId]['quantity']++;
+            session()->put('cart', $cart);
+            return true;
+        }
+
+        return false;
+    }
+}
+
+// ────────── Decrease Cart Quantity ──────────
+if (!function_exists('decreaseCartQuantity')) {
+    function decreaseCartQuantity($productId)
+    {
+        $cart = session()->get('cart', []);
+
+        if (isset($cart[$productId])) {
+            // Ensure quantity doesn't go below 1
+            if ($cart[$productId]['quantity'] > 1) {
+                $cart[$productId]['quantity']--;
+                session()->put('cart', $cart);
+                return true;
+            } else {
+                // Optionally remove the item if quantity drops to 1 and is then decreased
+                unset($cart[$productId]);
+                session()->put('cart', $cart);
+                return true;
+            }
+        }
+
+        return false;
     }
 }
 

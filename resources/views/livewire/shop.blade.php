@@ -31,7 +31,9 @@
                     hover:text-black 
                     transition 
                     duration-300 
-                    ease">Add to cart <i class="fa-solid fa-cart-plus"></i></button>
+                    ease"
+                     wire:click="addProductToCart({{ $product->id }})"
+                    >Add to cart <i class="fa-solid fa-cart-plus"></i></button>
                 </div>
             </div>
         </div>

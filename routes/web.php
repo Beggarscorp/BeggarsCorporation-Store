@@ -17,11 +17,13 @@ use App\Livewire\Pages\PrivacyPolicy;
 use App\Livewire\Pages\TermsAndConditions;
 use App\Livewire\Pages\ShippingAndDeliveryPolicy;
 use App\Livewire\Pages\CancellationAndRefundPolicy;
+use App\Livewire\Productcart;
 
 use App\Livewire\Product;
 
 Route::get('/', Index::class)->name('home');
 Route::get('/shop', Shop::class)->name('shop');
+Route::get('/product-cart', Productcart::class)->name('product.cart');
 Route::get('/product/{slug}/{id}', Product::class)->name('product.details');
 Route::get('/about-us', AboutUs::class)->name('about-us');
 Route::get('/privacy-policy', PrivacyPolicy::class)->name('privacy-policy');
