@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "swiper/swiper-bundle.css";
+
 
 /* Tell Tailwind where to look for class names (v4 syntax) */
 @source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
@@ -30,5 +32,9 @@
     .submitButton
     {
         @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out;
+    }
+    .heading
+    {
+        @apply my-10 text-center text-3xl text-yellow-700 uppercase font-bold;
     }
 }

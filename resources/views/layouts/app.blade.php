@@ -11,10 +11,10 @@
 <body class="bg-gray-100 font-nunito">
 
     {{-- Header --}}
-    @include('livewire.components.header')
+    @include('components.header')
 
     {{-- Page Content --}}
-    <main class="container mx-auto p-6">
+    <main>
         {{ $slot }}
     </main>
 
