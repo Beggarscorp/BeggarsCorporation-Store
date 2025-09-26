@@ -7,9 +7,10 @@
                     @foreach ($categories as $category)
                     <div class="swiper-slide">
                         <div class="category-card">
-
-                            <img src="{{ Storage::url($category->image) }}" alt="{{ $category->categoryName }}" class="w-full h-full object-cover rounded-full">
-                            <div class="category-name text-center my-2 text-yellow-600 text-xl">{{ $category->categoryName }}</div>
+                            <a href="{{ route('shop.category', ['slug' => $category->slug]) }}" target="_blank" rel="noopener noreferrer">
+                                <img src="{{ Storage::url($category->image) }}" alt="{{ $category->categoryName }}" class="w-full h-full object-cover rounded-full">
+                                <div class="category-name text-center my-2 text-yellow-600 text-xl">{{ $category->categoryName }}</div>
+                            </a>
                         </div>
                     </div>
                     @endforeach
