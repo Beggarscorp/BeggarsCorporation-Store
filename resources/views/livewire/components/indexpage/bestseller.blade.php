@@ -36,7 +36,7 @@
                                         transition 
                                         duration-300 
                                         ease"
-                                        wire:click="addProductToCart">Add to cart <i class="fa-solid fa-cart-plus"></i></button>
+                                        wire:click="addProductToCart({{ $product->id }})">Add to cart <i class="fa-solid fa-cart-plus"></i></button>
                                 </div>
                             </div>
                         </div>

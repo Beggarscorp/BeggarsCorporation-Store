@@ -14,9 +14,10 @@ class Bestseller extends Component
         $this->products = Products::all();
     }
 
-    public function addProductToCart()
+    public function addProductToCart($productId)
     {
-        dd("Hello jay");
+        addToCart($productId, 1);
+        $this->dispatch('cartUpdated'); // notify CartCount
     }
 
     #[Layout('layouts.app')]
