@@ -15,7 +15,7 @@ class Shop extends Component
     public function addProductToCart($productId)
     {
         addToCart($productId, 1);
-        // $this->emit('cartUpdated'); // optional for UI refresh
+        $this->dispatch('cartUpdated'); // notify CartCount
     }
     
     public function mount($slug = null)
